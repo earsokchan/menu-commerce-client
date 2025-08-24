@@ -413,7 +413,7 @@ function Home() {
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         const fetchBanner = async ()=>{
             try {
-                const response = await fetch('http://localhost:5000/api/discount-banner');
+                const response = await fetch('https://api-404found-v1.vercel.app/api/discount-banner');
                 if (!response.ok) throw new Error('Failed to fetch discount banner');
                 const data = await response.json();
                 setBanner(data);
@@ -448,7 +448,7 @@ function Home() {
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         const fetchCategories = async ()=>{
             try {
-                const response = await fetch('http://localhost:5000/api/categories');
+                const response = await fetch('https://api-404found-v1.vercel.app/api/categories');
                 if (!response.ok) throw new Error('Failed to fetch categories');
                 const data = await response.json();
                 setCategories(data);
@@ -473,7 +473,7 @@ function Home() {
         setIsLoading(true);
         setError(null);
         try {
-            const url = `http://localhost:5000/api/products/category/${encodeURIComponent(category)}`;
+            const url = `https://api-404found-v1.vercel.app/api/products/category/${encodeURIComponent(category)}`;
             const response = await fetch(url);
             if (!response.ok) throw new Error('Failed to fetch products');
             const data = await response.json();
