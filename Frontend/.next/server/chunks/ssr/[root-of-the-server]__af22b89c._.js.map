@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 13, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Ear%20Sokchan/Documents/yy_la_online_shop/makha-restaurant/src/app/ClientBody.tsx"],"sourcesContent":["\"use client\";\r\n\r\nimport { useEffect } from \"react\";\r\n\r\nexport default function ClientBody({\r\n  children,\r\n}: {\r\n  children: React.ReactNode;\r\n}) {\r\n  // Remove any extension-added classes during hydration\r\n  useEffect(() => {\r\n    // This runs only on the client after hydration\r\n    document.body.className = \"antialiased\";\r\n  }, []);\r\n\r\n  return <div className=\"antialiased\">{children}</div>;\r\n}\r\n"],"names":[],"mappings":";;;;AAEA;AAFA;;;AAIe,SAAS,WAAW,EACjC,QAAQ,EAGT;IACC,sDAAsD;IACtD,CAAA,GAAA,qMAAA,CAAA,YAAS,AAAD,EAAE;QACR,+CAA+C;QAC/C,SAAS,IAAI,CAAC,SAAS,GAAG;IAC5B,GAAG,EAAE;IAEL,qBAAO,8OAAC;QAAI,WAAU;kBAAe;;;;;;AACvC","debugId":null}}]
+}
