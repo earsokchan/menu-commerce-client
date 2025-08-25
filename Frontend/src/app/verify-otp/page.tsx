@@ -13,14 +13,14 @@ export default function VerifyOTP() {
 
   const BASE_URL = 'http://localhost:5000';
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/\D/g, '');
     if (value.length <= 6) {
       setOtp(value);
     }
   };
 
-  const handlePhoneChange = (e) => {
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPhone(e.target.value);
   };
 
@@ -54,14 +54,19 @@ export default function VerifyOTP() {
 
       setError('');
       console.log('OTP sent:', data);
-    } catch (err) {
+    } catch (err: unknown) {
       setError('An error occurred while sending OTP. Please try again.');
-      console.error('Send OTP error:', err);
+      if (err instanceof Error) {
+        console.error('Send OTP error:', err.message);
+      } else {
+        console.error('Send OTP unknown error:', err);
+      }
+    } finally {
       setLoading(false);
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
     setLoading(true);
@@ -96,9 +101,14 @@ export default function VerifyOTP() {
 
       console.log('OTP verified:', data);
       router.push('/login'); // Redirect to login after verification
-    } catch (err) {
+    } catch (err: unknown) {
       setError('An error occurred. Please try again.');
-      console.error('Verify OTP error:', err);
+      if (err instanceof Error) {
+        console.error('Verify OTP error:', err.message);
+      } else {
+        console.error('Verify OTP unknown error:', err);
+      }
+    } finally {
       setLoading(false);
     }
   };
@@ -109,7 +119,10 @@ export default function VerifyOTP() {
       {error && <p className="text-red-500 mb-4">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="phone"
+            className="block text-sm font-medium text-gray-700"
+          >
             Phone Number
           </label>
           <input
@@ -133,7 +146,10 @@ export default function VerifyOTP() {
           {loading ? 'Sending OTP...' : 'Send OTP'}
         </button>
         <div>
-          <label htmlFor="otp" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="otp"
+            className="block text-sm font-medium text-gray-700"
+          >
             OTP Code
           </label>
           <input

@@ -24,7 +24,7 @@ export default function Signup() {
     }
 
     try {
-      const response = await fetch('https://api-404found-v1.vercel.app/api/auth/signup', {
+      const response = await fetch('https://login-signup-page-server.vercel.app/api/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
