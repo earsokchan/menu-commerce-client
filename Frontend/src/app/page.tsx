@@ -78,7 +78,7 @@ export default function Home() {
   useEffect(() => {
     const fetchBanner = async () => {
       try {
-        const response = await fetch('https://api-404found-v1.vercel.app/api/discount-banner');
+        const response = await fetch('https://menu-commerce-backend-production.up.railway.app/api/discount-banner');
         if (!response.ok) throw new Error('Failed to fetch discount banner');
         const data = await response.json();
         setBanner(data);
@@ -111,7 +111,7 @@ export default function Home() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch('https://api-404found-v1.vercel.app/api/categories');
+        const response = await fetch('https://menu-commerce-backend-production.up.railway.app/api/categories');
         if (!response.ok) throw new Error('Failed to fetch categories');
         const data = await response.json();
         setCategories(data);
@@ -137,7 +137,7 @@ export default function Home() {
     setIsLoading(true);
     setError(null);
     try {
-      const url = `https://api-404found-v1.vercel.app/api/products/category/${encodeURIComponent(category)}`;
+      const url = `https://menu-commerce-backend-production.up.railway.app/api/products/category/${encodeURIComponent(category)}`;
       const response = await fetch(url);
       if (!response.ok) throw new Error('Failed to fetch products');
       const data = await response.json();
