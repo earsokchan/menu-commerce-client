@@ -4,9 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Search, Plus, ShoppingCart, X, ChevronLeft, ChevronRight, Menu, User } from 'lucide-react';
+import { Plus, X, ChevronLeft, ChevronRight, Search, ShoppingCart, User } from 'lucide-react';
 import Link from 'next/link';
 import { useCartStore } from '@/lib/cart-store';
 
@@ -54,7 +52,6 @@ const AVAILABLE_SIZES = ['XS', 'S', 'M', 'L', 'XL'];
 export default function Home() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -62,17 +59,8 @@ export default function Home() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [selectedSizes, setSelectedSizes] = useState<{ [key: string]: string }>({});
   const [toasts, setToasts] = useState<Toast[]>([]);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [banner, setBanner] = useState<Banner | null>(null);
   const { addItem, getTotalItems } = useCartStore();
-
-  // Check authentication status on mount
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token);
-  }, []);
 
   // Fetch banner on component mount
   useEffect(() => {
@@ -90,26 +78,10 @@ export default function Home() {
     fetchBanner();
   }, []);
 
-  // Add toast notification
-  const showToast = (message: string) => {
-    const id = Date.now();
-    setToasts((prev) => [...prev, { id, message }]);
-    setTimeout(() => {
-      setToasts((prev) => prev.filter((toast) => toast.id !== id));
-    }, 3000);
-  };
-
-  // Handle logout
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setIsLoggedIn(false);
-    setIsUserMenuOpen(false);
-    showToast('Logged out successfully');
-  };
-
   // Fetch categories on component mount
   useEffect(() => {
     const fetchCategories = async () => {
+      setIsLoading(true);
       try {
         const response = await fetch('https://menu-commerce-backend-production.up.railway.app/api/categories');
         if (!response.ok) throw new Error('Failed to fetch categories');
@@ -120,6 +92,8 @@ export default function Home() {
         }
       } catch (err) {
         setError('Error fetching categories: ' + (err as Error).message);
+      } finally {
+        setIsLoading(false);
       }
     };
     
@@ -147,7 +121,6 @@ export default function Home() {
         sizes: product.sizes || AVAILABLE_SIZES,
       }));
       setProducts(parsedData);
-      // Clear selectedSizes to ensure dropdowns start with "Select size"
       setSelectedSizes({});
     } catch (err) {
       setError('Error fetching products: ' + (err as Error).message);
@@ -165,10 +138,6 @@ export default function Home() {
     badges: product.badges,
     size: size,
   });
-
-  const filteredProducts = products.filter((item) =>
-    item.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
   const handleSizeChange = (productId: string, size: string) => {
     setSelectedSizes((prev) => ({
@@ -204,172 +173,71 @@ export default function Home() {
     showToast(`Added ${product.name} (${size})`);
   };
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const toggleUserMenu = () => {
-    setIsUserMenuOpen(!isUserMenuOpen);
+  // Add toast notification
+  const showToast = (message: string) => {
+    const id = Date.now();
+    setToasts((prev) => [...prev, { id, message }]);
+    setTimeout(() => {
+      setToasts((prev) => prev.filter((toast) => toast.id !== id));
+    }, 3000);
   };
 
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-black text-white px-4 py-4">
+      <header className="bg-black text-white px-4 py-4 sticky top-0 z-40">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-4">
-              <Button
-                onClick={toggleMenu}
-                className="lg:hidden bg-transparent hover:bg-gray-800 text-white"
-                size="icon"
+            <h1 className="text-2xl font-bold text-amber-500">404found</h1>
+          </div>
+
+          {/* Mobile-friendly category scroll */}
+          <div className="flex overflow-x-auto gap-3 pb-4 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setActiveCategory(category.name)}
+                className={`flex-shrink-0 px-5 py-2 text-sm uppercase rounded-full transition-all duration-200 ${
+                  activeCategory === category.name
+                    ? 'bg-amber-500 text-white shadow-lg'
+                    : 'bg-gray-700 text-white hover:bg-gray-600'
+                }`}
               >
-                <Menu className="w-6 h-6" />
-              </Button>
-              <h1 className="text-2xl font-bold text-amber-500">404found</h1>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="relative">
-                <Button
-                  onClick={toggleUserMenu}
-                  className="bg-transparent hover:bg-gray-800 text-white"
-                  size="icon"
-                >
-                  <User className="w-6 h-6" />
-                </Button>
-                {isUserMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg z-50">
-                    {isLoggedIn ? (
-                      <div
-                        className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                        onClick={handleLogout}
-                      >
-                        Logout
-                      </div>
-                    ) : (
-                      <>
-                        <Link href="/login">
-                          <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => setIsUserMenuOpen(false)}>
-                            Login
-                          </div>
-                        </Link>
-                        <Link href="/signup">
-                          <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => setIsUserMenuOpen(false)}>
-                            Signup
-                          </div>
-                        </Link>
-                      </>
-                    )}
-                  </div>
-                )}
-              </div>
-              <Link href="/cart" className="relative">
-                <ShoppingCart className="w-6 h-6 hover:text-amber-400 transition-colors cursor-pointer" />
-                {getTotalItems() > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-amber-500 text-black text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                    {getTotalItems()}
-                  </span>
-                )}
-              </Link>
-            </div>
-          </div>
-
-          <div className="relative mb-6">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-            <Input
-              className="pl-10 bg-white text-black"
-              placeholder="SEARCH WITHIN THE MENU"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-
-          <div className="hidden lg:block">
-            <Tabs value={activeCategory || ''} onValueChange={setActiveCategory} className="w-full">
-              <TabsList className="grid grid-cols-3 lg:grid-cols-6 bg-gray-800 h-auto p-1">
-                {categories.map(category => (
-                  <TabsTrigger key={category.id} value={category.name} className="text-xs px-2 py-2 uppercase">
-                    {category.name}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-            </Tabs>
+                {category.name}
+              </button>
+            ))}
           </div>
         </div>
       </header>
 
-      {/* Mobile Menu Sidebar */}
-      <div
-        className={`fixed inset-y-0 left-0 w-64 bg-black text-white transform ${
-          isMenuOpen ? 'translate-x-0' : '-translate-x-full'
-        } transition-transform duration-300 ease-in-out z-50 lg:hidden`}
-      >
-        <div className="flex items-center justify-between p-4 border-b border-gray-800">
-          <h2 className="text-lg font-bold text-amber-500">Categories</h2>
-          <Button
-            onClick={toggleMenu}
-            className="bg-transparent hover:bg-gray-800 text-white"
-            size="icon"
-          >
-            <X className="w-6 h-6" />
-          </Button>
-        </div>
-        <nav className="p-4">
-          {categories.map(category => (
-            <button
-              key={category.id}
-              onClick={() => {
-                setActiveCategory(category.name);
-                setIsMenuOpen(false);
-              }}
-              className={`block w-full text-left py-2 px-4 rounded uppercase ${
-                activeCategory === category.name
-                  ? 'bg-amber-500 text-black'
-                  : 'text-white hover:bg-gray-800'
-              }`}
-            >
-              {category.name}
-            </button>
-          ))}
-        </nav>
-      </div>
-
-      {/* Overlay for mobile menu */}
-      {isMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
-          onClick={toggleMenu}
-        ></div>
-      )}
-
       {/* Discount Banner */}
       {banner && (
-        <div className="bg-gradient-to-r from-red-700 via-red-600 to-red-700 text-white py-8 px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex items-center justify-between">
-              <div className="flex-1">
-                <div className="text-4xl lg:text-6xl font-bold mb-2">
-                  <span className="text-white">{banner.title}</span>
-                  <div className="flex items-baseline">
-                    <span className="text-6xl lg:text-8xl text-amber-400">{banner.percentage}</span>
-                    <span className="text-3xl lg:text-4xl text-amber-400">%</span>
+        <div className="relative w-full">
+          <div className="max-w-[2380px] mx-auto px-4 py-8">
+            {banner.images[0] && (
+              <div className="relative w-full h-[150px] overflow-hidden rounded-2xl shadow-lg">
+                <img
+                  src={banner.images[0]}
+                  alt="Discount Banner"
+                  className="w-full h-full object-[center_top] object-cover"
+                />
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white bg-black/30">
+                  <h2 className="text-4xl sm:text-5xl font-extrabold uppercase mb-4 drop-shadow-lg">
+                    {banner.title}
+                  </h2>
+                  <div className="flex items-baseline gap-2 drop-shadow-lg">
+                    <span className="text-3xl sm:text-7xl font-bold text-amber-400">
+                      {banner.percentage}
+                    </span>
+                    <span className="text-3xl sm:text-4xl font-bold text-amber-400">%</span>
+                    <span className="text-xl sm:text-2xl">OFF</span>
                   </div>
-                  <div className="text-lg lg:text-xl font-normal">
-                    <span className="text-white">{banner.description}</span> <span className="text-amber-400">OFF</span>
-                  </div>
+                  <p className="text-base sm:text-lg mt-4 max-w-md drop-shadow-lg">
+                    {banner.description}
+                  </p>
                 </div>
               </div>
-              <div className="flex gap-2">
-                {banner.images.map((image, index) => (
-                  <img
-                    key={index}
-                    src={image}
-                    alt={`Banner image ${index + 1}`}
-                    className="w-24 h-24 lg:w-32 lg:h-32 rounded-lg object-cover"
-                  />
-                ))}
-              </div>
-            </div>
+            )}
           </div>
         </div>
       )}
@@ -393,9 +261,9 @@ export default function Home() {
         )}
 
         {categories.length > 0 && (
-          <Tabs value={activeCategory || ''} className="w-full">
-            {categories.map(category => (
-              <TabsContent key={category.id} value={category.name}>
+          <div className="w-full">
+            {categories.map((category) => (
+              <div key={category.id} className={activeCategory === category.name ? 'block' : 'hidden'}>
                 <div className="mb-6">
                   <h2 className="text-2xl font-bold text-gray-800 mb-6 uppercase">
                     {category.name}
@@ -403,11 +271,11 @@ export default function Home() {
 
                   {isLoading ? (
                     <p className="text-gray-500">Loading products...</p>
-                  ) : filteredProducts.length === 0 ? (
-                    <p className="text-gray-500">No items found for "{searchQuery}"</p>
+                  ) : products.length === 0 ? (
+                    <p className="text-gray-500">No items found</p>
                   ) : (
                     <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                      {filteredProducts.map((item) => (
+                      {products.map((item) => (
                         <Card key={item.id} className="overflow-hidden hover:shadow-lg transition-shadow">
                           <div className="relative">
                             <img
@@ -472,9 +340,9 @@ export default function Home() {
                     </div>
                   )}
                 </div>
-              </TabsContent>
+              </div>
             ))}
-          </Tabs>
+          </div>
         )}
 
         {selectedProductImages && (
@@ -530,6 +398,38 @@ export default function Home() {
         )}
       </main>
 
+    {/* Mobile Bottom Navigation */}
+<nav className="sm:hidden fixed bottom-1 left-1/2 -translate-x-1/2 w-[90%] bg-black text-white rounded-2xl shadow-lg py-2 px-4 z-40">
+  <div className="flex justify-around items-center">
+    {/* Search */}
+    <Link href="/" className="flex flex-col items-center gap-1 hover:text-amber-400 transition-colors">
+      <Search className="w-6 h-6" />
+      <span className="text-[11px]">Search</span>
+    </Link>
+
+    {/* Cart */}
+    <Link href="/cart" className="flex flex-col items-center gap-1 relative hover:text-amber-400 transition-colors">
+      <ShoppingCart className="w-6 h-6" />
+      {getTotalItems() > 0 && (
+        <span className="absolute -top-1.5 -right-3 bg-amber-500 text-black text-[10px] rounded-full w-5 h-5 flex items-center justify-center font-medium">
+          {getTotalItems()}
+        </span>
+      )}
+      <span className="text-[11px]">Cart</span>
+    </Link>
+
+    {/* Account */}
+    <button
+      onClick={() => {}} // toggleUserMenu
+      className="flex flex-col items-center gap-1 hover:text-amber-400 transition-colors"
+    >
+      <User className="w-6 h-6" />
+      <span className="text-[11px]">Account</span>
+    </button>
+  </div>
+</nav>
+
+
       <style jsx>{`
         @keyframes slide-in {
           from {
@@ -543,6 +443,15 @@ export default function Home() {
         }
         .animate-slide-in {
           animation: slide-in 0.3s ease-out;
+        }
+        .scrollbar-thin {
+          scrollbar-width: thin;
+        }
+        .scrollbar-thumb-gray-600 {
+          scrollbar-color: #4b5563 transparent;
+        }
+        .scrollbar-track-transparent {
+          scrollbar-track-color: transparent;
         }
       `}</style>
     </div>

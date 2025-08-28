@@ -64,8 +64,8 @@ export default function Products() {
     setIsLoading(true);
     try {
       const url = category === 'all' 
-        ? 'https://api-404found-v1.vercel.app/api/products' 
-        : `https://api-404found-v1.vercel.app/api/products/category/${encodeURIComponent(category)}`;
+        ? 'https://menu-commerce-backend-production.up.railway.app/api/products' 
+        : `https://menu-commerce-backend-production.up.railway.app/api/products/category/${encodeURIComponent(category)}`;
       const response = await fetch(url);
       if (!response.ok) throw new Error('Failed to fetch products');
       const data = await response.json();
@@ -80,7 +80,7 @@ export default function Products() {
   const fetchCategories = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('https://api-404found-v1.vercel.app/api/categories');
+      const response = await fetch('https://menu-commerce-backend-production.up.railway.app/api/categories');
       if (!response.ok) throw new Error('Failed to fetch categories');
       const data = await response.json();
       setCategories(data); // Directly set the categories from the API response
@@ -113,7 +113,7 @@ export default function Products() {
         category: newProduct.category
       };
 
-      const url = editingProductId ? `https://api-404found-v1.vercel.app/api/products/${editingProductId}` : 'https://api-404found-v1.vercel.app/api/products';
+      const url = editingProductId ? `https://menu-commerce-backend-production.up.railway.app/api/products/${editingProductId}` : 'https://menu-commerce-backend-production.up.railway.app/api/products';
       const method = editingProductId ? 'PUT' : 'POST';
 
       const response = await fetch(url, {
@@ -160,7 +160,7 @@ export default function Products() {
     setError(null);
 
     try {
-      const url = editingCategoryId ? `http://localhost:5000/api/categories/${editingCategoryId}` : 'http://localhost:5000/api/categories';
+      const url = editingCategoryId ? `https://menu-commerce-backend-production.up.railway.app/api/categories/${editingCategoryId}` : 'https://menu-commerce-backend-production.up.railway.app/api/categories';
       const method = editingCategoryId ? 'PUT' : 'POST';
 
       const response = await fetch(url, {
@@ -190,7 +190,7 @@ export default function Products() {
     setError(null);
 
     try {
-      const response = await fetch(`http://localhost:5000/api/products/${productId}`, {
+      const response = await fetch(`https://menu-commerce-backend-production.up.railway.app/api/products/${productId}`, {
         method: 'DELETE'
       });
 
@@ -212,7 +212,7 @@ export default function Products() {
     setError(null);
 
     try {
-      const response = await fetch(`http://localhost:5000/api/categories/${encodeURIComponent(categoryName)}`, {
+      const response = await fetch(`https://menu-commerce-backend-production.up.railway.app/api/categories/${encodeURIComponent(categoryName)}`, {
         method: 'DELETE'
       });
 

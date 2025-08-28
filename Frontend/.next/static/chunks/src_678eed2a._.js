@@ -948,7 +948,7 @@ function Products() {
         let category = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : 'all';
         setIsLoading(true);
         try {
-            const url = category === 'all' ? 'http://localhost:5000/api/products' : "http://localhost:5000/api/products/category/".concat(encodeURIComponent(category));
+            const url = category === 'all' ? 'https://menu-commerce-backend-production.up.railway.app/api/products' : "https://menu-commerce-backend-production.up.railway.app/api/products/category/".concat(encodeURIComponent(category));
             const response = await fetch(url);
             if (!response.ok) throw new Error('Failed to fetch products');
             const data = await response.json();
@@ -962,7 +962,7 @@ function Products() {
     const fetchCategories = async ()=>{
         setIsLoading(true);
         try {
-            const response = await fetch('http://localhost:5000/api/categories');
+            const response = await fetch('https://menu-commerce-backend-production.up.railway.app/api/categories');
             if (!response.ok) throw new Error('Failed to fetch categories');
             const data = await response.json();
             setCategories(data); // Directly set the categories from the API response
@@ -991,7 +991,7 @@ function Products() {
                 color: newProduct.color || '',
                 category: newProduct.category
             };
-            const url = editingProductId ? "http://localhost:5000/api/products/".concat(editingProductId) : 'http://localhost:5000/api/products';
+            const url = editingProductId ? "https://menu-commerce-backend-production.up.railway.app/api/products/".concat(editingProductId) : 'https://menu-commerce-backend-production.up.railway.app/api/products';
             const method = editingProductId ? 'PUT' : 'POST';
             const response = await fetch(url, {
                 method,
@@ -1039,7 +1039,7 @@ function Products() {
         setIsLoading(true);
         setError(null);
         try {
-            const url = editingCategoryId ? "http://localhost:5000/api/categories/".concat(editingCategoryId) : 'http://localhost:5000/api/categories';
+            const url = editingCategoryId ? "https://menu-commerce-backend-production.up.railway.app/api/categories/".concat(editingCategoryId) : 'https://menu-commerce-backend-production.up.railway.app/api/categories';
             const method = editingCategoryId ? 'PUT' : 'POST';
             const response = await fetch(url, {
                 method,
@@ -1071,7 +1071,7 @@ function Products() {
         setIsLoading(true);
         setError(null);
         try {
-            const response = await fetch("http://localhost:5000/api/products/".concat(productId), {
+            const response = await fetch("https://menu-commerce-backend-production.up.railway.app/api/products/".concat(productId), {
                 method: 'DELETE'
             });
             if (!response.ok) {
@@ -1089,7 +1089,7 @@ function Products() {
         setIsLoading(true);
         setError(null);
         try {
-            const response = await fetch("http://localhost:5000/api/categories/".concat(encodeURIComponent(categoryName)), {
+            const response = await fetch("https://menu-commerce-backend-production.up.railway.app/api/categories/".concat(encodeURIComponent(categoryName)), {
                 method: 'DELETE'
             });
             if (!response.ok) {

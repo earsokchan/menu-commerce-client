@@ -30,7 +30,7 @@ function Login() {
         setError('');
         setSuccess('');
         try {
-            const response = await fetch('http://localhost:8000/api/auth/login', {
+            const response = await fetch('https://login-signup-page-server.vercel.app/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
