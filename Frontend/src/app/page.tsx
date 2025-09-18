@@ -26,7 +26,7 @@ interface MenuItem {
   riels: string;
   image: string;
   badges: string[];
-  size: string;
+  size: string; // Make size required
 }
 
 interface Toast {
@@ -47,8 +47,6 @@ interface Banner {
   images: string[];
 }
 
-const AVAILABLE_SIZES = ['XS', 'S', 'M', 'L', 'XL'];
-
 export default function Home() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
@@ -57,7 +55,6 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [selectedProductImages, setSelectedProductImages] = useState<string[] | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [selectedSizes, setSelectedSizes] = useState<{ [key: string]: string }>({});
   const [toasts, setToasts] = useState<Toast[]>([]);
   const [banner, setBanner] = useState<Banner | null>(null);
   const { addItem, getTotalItems } = useCartStore();
@@ -118,10 +115,8 @@ export default function Home() {
       const parsedData = data.map((product: Product) => ({
         ...product,
         salePrice: product.salePrice != null && typeof product.salePrice === 'string' ? parseFloat(product.salePrice) : product.salePrice,
-        sizes: product.sizes || AVAILABLE_SIZES,
       }));
       setProducts(parsedData);
-      setSelectedSizes({});
     } catch (err) {
       setError('Error fetching products: ' + (err as Error).message);
     } finally {
@@ -129,22 +124,15 @@ export default function Home() {
     }
   };
 
-  const transformToMenuItem = (product: Product, size: string): MenuItem => ({
+  const transformToMenuItem = (product: Product): MenuItem => ({
     id: product.id,
     name: product.name,
     salePrice: typeof product.salePrice === 'number' ? product.salePrice : null,
     riels: product.riels,
     image: product.images[0] || 'https://via.placeholder.com/300',
     badges: product.badges,
-    size: size,
+    size: '', // Always provide a string for size
   });
-
-  const handleSizeChange = (productId: string, size: string) => {
-    setSelectedSizes((prev) => ({
-      ...prev,
-      [productId]: size
-    }));
-  };
 
   const handleViewImages = (images: string[]) => {
     setSelectedProductImages(images);
@@ -168,9 +156,9 @@ export default function Home() {
     }
   };
 
-  const handleAddToCart = (product: Product, size: string) => {
-    addItem(transformToMenuItem(product, size));
-    showToast(`Added ${product.name} (${size})`);
+  const handleAddToCart = (product: Product) => {
+    addItem(transformToMenuItem(product));
+    showToast(`Added ${product.name}`);
   };
 
   // Add toast notification
@@ -313,24 +301,11 @@ export default function Home() {
                             </div>
 
                             <div className="text-xs text-gray-500 mb-2">{item.riels}</div>
-                            <div className="text-sm font-semibold text-gray-700 mb-3">
-                              <select
-                                value={selectedSizes[item.id] || ''}
-                                onChange={(e) => handleSizeChange(item.id, e.target.value)}
-                                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
-                              >
-                                <option value="" disabled>Select size</option>
-                                {item.sizes.map((size) => (
-                                  <option key={size} value={size}>{size}</option>
-                                ))}
-                              </select>
-                            </div>
 
                             <Button
-                              onClick={() => handleAddToCart(item, selectedSizes[item.id] || item.sizes[0])}
+                              onClick={() => handleAddToCart(item)}
                               className="w-full bg-black hover:bg-gray-800 text-white rounded-full"
                               size="sm"
-                              disabled={!selectedSizes[item.id] && item.sizes.length > 0}
                             >
                               <Plus className="w-4 h-4" /> Add to Cart
                             </Button>
@@ -398,37 +373,36 @@ export default function Home() {
         )}
       </main>
 
-    {/* Mobile Bottom Navigation */}
-<nav className="sm:hidden fixed bottom-1 left-1/2 -translate-x-1/2 w-[90%] bg-black text-white rounded-2xl shadow-lg py-2 px-4 z-40">
-  <div className="flex justify-around items-center">
-    {/* Search */}
-    <Link href="/" className="flex flex-col items-center gap-1 hover:text-amber-400 transition-colors">
-      <Search className="w-6 h-6" />
-      <span className="text-[11px]">Search</span>
-    </Link>
+      {/* Mobile Bottom Navigation */}
+      <nav className="sm:hidden fixed bottom-1 left-1/2 -translate-x-1/2 w-[90%] bg-black text-white rounded-2xl shadow-lg py-2 px-4 z-40">
+        <div className="flex justify-around items-center">
+          {/* Search */}
+          <Link href="/" className="flex flex-col items-center gap-1 hover:text-amber-400 transition-colors">
+            <Search className="w-6 h-6" />
+            <span className="text-[11px]">Search</span>
+          </Link>
 
-    {/* Cart */}
-    <Link href="/cart" className="flex flex-col items-center gap-1 relative hover:text-amber-400 transition-colors">
-      <ShoppingCart className="w-6 h-6" />
-      {getTotalItems() > 0 && (
-        <span className="absolute -top-1.5 -right-3 bg-amber-500 text-black text-[10px] rounded-full w-5 h-5 flex items-center justify-center font-medium">
-          {getTotalItems()}
-        </span>
-      )}
-      <span className="text-[11px]">Cart</span>
-    </Link>
+          {/* Cart */}
+          <Link href="/cart" className="flex flex-col items-center gap-1 relative hover:text-amber-400 transition-colors">
+            <ShoppingCart className="w-6 h-6" />
+            {getTotalItems() > 0 && (
+              <span className="absolute -top-1.5 -right-3 bg-amber-500 text-black text-[10px] rounded-full w-5 h-5 flex items-center justify-center font-medium">
+                {getTotalItems()}
+              </span>
+            )}
+            <span className="text-[11px]">Cart</span>
+          </Link>
 
-    {/* Account */}
-    <button
-      onClick={() => {}} // toggleUserMenu
-      className="flex flex-col items-center gap-1 hover:text-amber-400 transition-colors"
-    >
-      <User className="w-6 h-6" />
-      <span className="text-[11px]">Account</span>
-    </button>
-  </div>
-</nav>
-
+          {/* Account */}
+          <button
+            onClick={() => {}} // toggleUserMenu
+            className="flex flex-col items-center gap-1 hover:text-amber-400 transition-colors"
+          >
+            <User className="w-6 h-6" />
+            <span className="text-[11px]">Account</span>
+          </button>
+        </div>
+      </nav>
 
       <style jsx>{`
         @keyframes slide-in {
