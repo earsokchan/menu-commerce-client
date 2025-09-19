@@ -258,7 +258,24 @@ export default function Home() {
                   </h2>
 
                   {isLoading ? (
-                    <p className="text-gray-500">Loading products...</p>
+                    // Skeleton Loading Animation
+                    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                      {Array.from({ length: 8 }).map((_, idx) => (
+                        <div key={idx} className="animate-pulse bg-white rounded-lg overflow-hidden shadow">
+                          <div className="bg-gray-200 h-48 w-full" />
+                          <div className="p-4">
+                            <div className="h-4 bg-gray-200 rounded w-1/2 mb-2" />
+                            <div className="h-6 bg-gray-200 rounded w-3/4 mb-3" />
+                            <div className="flex items-center gap-2 mb-3">
+                              <div className="h-6 w-16 bg-gray-200 rounded" />
+                              <div className="h-6 w-10 bg-gray-200 rounded" />
+                            </div>
+                            <div className="h-4 bg-gray-200 rounded w-1/3 mb-2" />
+                            <div className="h-8 bg-gray-200 rounded w-full" />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   ) : products.length === 0 ? (
                     <p className="text-gray-500">No items found</p>
                   ) : (
