@@ -1,4 +1,11 @@
 {
+  "/_not-found/page": "app-edge-has-no-entrypoint",
+  "/cart/page": "app-edge-has-no-entrypoint",
+  "/dashboard/analytics/page": "app-edge-has-no-entrypoint",
+  "/dashboard/customers/page": "app-edge-has-no-entrypoint",
+  "/dashboard/page": "app-edge-has-no-entrypoint",
+  "/dashboard/products/page": "app-edge-has-no-entrypoint",
+  "/dashboard/settings/page": "app-edge-has-no-entrypoint",
   "/favicon.ico/route": "app/favicon.ico/route.js",
   "/page": "app-edge-has-no-entrypoint"
 }

@@ -523,6 +523,43 @@ export default function Products() {
                 <option key={category.id} value={category.name}>{category.name}</option>
               ))}
             </select>
+            {/* Add New Product Button (Desktop) */}
+            <Button
+              className="bg-blue-600 text-white px-3 py-2 rounded-full"
+              onClick={() => {
+                setIsProductDialogOpen(true);
+                setEditingProductId(null);
+                setNewProduct({
+                  id: '',
+                  name: '',
+                  salePrice: '',
+                  riels: '',
+                  images: ['', '', '', ''],
+                  badges: '',
+                  quantity: '',
+                  size: '',
+                  color: '',
+                  category: ''
+                });
+                setError(null);
+              }}
+              disabled={isLoading}
+            >
+              Add New Product
+            </Button>
+            {/* Add New Category Button (Desktop) */}
+            <Button
+              className="bg-green-600 text-white px-3 py-2 rounded-full"
+              onClick={() => {
+                setIsCategoryDialogOpen(true);
+                setEditingCategoryId(null);
+                setNewCategory({ id: '', name: '' });
+                setError(null);
+              }}
+              disabled={isLoading}
+            >
+              Add New Category
+            </Button>
           </div>
         </div>
         {/* Category Filter for mobile */}

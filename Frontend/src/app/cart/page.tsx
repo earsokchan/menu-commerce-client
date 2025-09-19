@@ -175,7 +175,7 @@
 //               <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
 //               <div className="flex items-center gap-2 sm:gap-4">
 //                 <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-full" />
-//                 <h1 className="text-xl sm:text-2xl font-bold text-amber-500">404found</h1>
+//                 <h1 className="text-xl sm:text-2xl font-bold text-amber-500">Pisey Salon</h1>
 //               </div>
 //             </Link>
 //             <div className="flex items-center gap-2">
@@ -213,7 +213,7 @@
 //             <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
 //             <div className="flex items-center gap-2 sm:gap-4">
 //               <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-full" />
-//               <h1 className="text-xl sm:text-2xl font-bold text-amber-500">404found</h1>
+//               <h1 className="text-xl sm:text-2xl font-bold text-amber-500">Pisey Salon</h1>
 //             </div>
 //           </Link>
 //           <div className="flex items-center gap-2">
@@ -633,7 +633,7 @@ export default function CartPage() {
               <div className="flex items-center gap-2 sm:gap-4">
                 <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-full" />
                 <h1 className="text-xl sm:text-2xl font-bold text-amber-500">
-                  404found
+                  Pisey Salon
                 </h1>
               </div>
             </Link>
@@ -677,7 +677,7 @@ export default function CartPage() {
             <div className="flex items-center gap-2 sm:gap-4">
               <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-full" />
               <h1 className="text-xl sm:text-2xl font-bold text-amber-500">
-                404found
+                Pisey Salon
               </h1>
             </div>
           </Link>

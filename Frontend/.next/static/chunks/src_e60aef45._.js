@@ -484,7 +484,7 @@ var { k: __turbopack_refresh__, m: module } = __turbopack_context__;
 //               <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
 //               <div className="flex items-center gap-2 sm:gap-4">
 //                 <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-full" />
-//                 <h1 className="text-xl sm:text-2xl font-bold text-amber-500">404found</h1>
+//                 <h1 className="text-xl sm:text-2xl font-bold text-amber-500">Pisey Salon</h1>
 //               </div>
 //             </Link>
 //             <div className="flex items-center gap-2">
@@ -520,7 +520,7 @@ var { k: __turbopack_refresh__, m: module } = __turbopack_context__;
 //             <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
 //             <div className="flex items-center gap-2 sm:gap-4">
 //               <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-full" />
-//               <h1 className="text-xl sm:text-2xl font-bold text-amber-500">404found</h1>
+//               <h1 className="text-xl sm:text-2xl font-bold text-amber-500">Pisey Salon</h1>
 //             </div>
 //           </Link>
 //           <div className="flex items-center gap-2">
@@ -938,7 +938,7 @@ function CartPage() {
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                                                 className: "text-xl sm:text-2xl font-bold text-amber-500",
-                                                children: "404found"
+                                                children: "Pisey Salon"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/cart/page.tsx",
                                                 lineNumber: 635,
@@ -1083,7 +1083,7 @@ function CartPage() {
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                                             className: "jsx-15f07da69bd309a1" + " " + "text-xl sm:text-2xl font-bold text-amber-500",
-                                            children: "404found"
+                                            children: "Pisey Salon"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/cart/page.tsx",
                                             lineNumber: 679,

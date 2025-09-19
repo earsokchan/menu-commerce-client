@@ -176,7 +176,7 @@ export default function Home() {
       <header className="bg-black text-white px-4 py-4 sticky top-0 z-40">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-between mb-6">
-            <h1 className="text-2xl font-bold text-amber-500">404found</h1>
+            <h1 className="text-2xl font-bold text-amber-500">Pisey Salon</h1>
           </div>
 
           {/* Mobile-friendly category scroll */}

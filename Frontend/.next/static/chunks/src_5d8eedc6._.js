@@ -621,7 +621,7 @@ function Settings() {
             const fetchBanner = {
                 "Settings.useEffect.fetchBanner": async ()=>{
                     try {
-                        const response = await fetch('http://localhost:5000/api/discount-banner');
+                        const response = await fetch('https://menu-commerce-backend-production.up.railway.app/api/discount-banner');
                         if (!response.ok) throw new Error('Failed to fetch discount banner');
                         const data = await response.json();
                         if (data) {
@@ -669,7 +669,7 @@ function Settings() {
             };
             const endpoint = banner ? "/api/discount-banner/".concat(banner.id) : '/api/discount-banner';
             const method = banner ? 'PUT' : 'POST';
-            const response = await fetch("http://localhost:5000".concat(endpoint), {
+            const response = await fetch("https://menu-commerce-backend-production.up.railway.app".concat(endpoint), {
                 method,
                 headers: {
                     'Content-Type': 'application/json'
@@ -698,7 +698,7 @@ function Settings() {
     const handleDelete = async ()=>{
         if (!banner) return;
         try {
-            const response = await fetch("http://localhost:5000/api/discount-banner/".concat(banner.id), {
+            const response = await fetch("https://menu-commerce-backend-production.up.railway.app/api/discount-banner/".concat(banner.id), {
                 method: 'DELETE'
             });
             if (!response.ok) {

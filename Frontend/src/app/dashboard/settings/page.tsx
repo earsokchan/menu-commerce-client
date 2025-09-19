@@ -27,7 +27,7 @@ export default function Settings() {
   useEffect(() => {
     const fetchBanner = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/discount-banner');
+        const response = await fetch('https://menu-commerce-backend-production.up.railway.app/api/discount-banner');
         if (!response.ok) throw new Error('Failed to fetch discount banner');
         const data = await response.json();
         if (data) {
@@ -81,7 +81,7 @@ export default function Settings() {
       const endpoint = banner ? `/api/discount-banner/${banner.id}` : '/api/discount-banner';
       const method = banner ? 'PUT' : 'POST';
 
-      const response = await fetch(`http://localhost:5000${endpoint}`, {
+      const response = await fetch(`https://menu-commerce-backend-production.up.railway.app${endpoint}`, {
         method,
         headers: {
           'Content-Type': 'application/json',
@@ -115,7 +115,7 @@ export default function Settings() {
     if (!banner) return;
 
     try {
-      const response = await fetch(`http://localhost:5000/api/discount-banner/${banner.id}`, {
+      const response = await fetch(`https://menu-commerce-backend-production.up.railway.app/api/discount-banner/${banner.id}`, {
         method: 'DELETE',
       });
 
