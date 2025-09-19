@@ -4,6 +4,10 @@ import "./globals.css";
 import ClientBody from "./ClientBody";
 import Script from "next/script";
 
+
+
+export const runtime = "edge";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
