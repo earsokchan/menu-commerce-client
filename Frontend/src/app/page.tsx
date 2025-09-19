@@ -172,6 +172,14 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Loading Overlay */}
+      {isLoading && categories.length === 0 && (
+        <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white bg-opacity-90">
+          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-amber-500 border-solid mb-4"></div>
+          <span className="text-lg font-semibold text-amber-600">សូមរង់ចាំ...</span>
+        </div>
+      )}
+
       {/* Header */}
       <header className="bg-black text-white px-4 py-4 sticky top-0 z-40">
         <div className="max-w-6xl mx-auto">
