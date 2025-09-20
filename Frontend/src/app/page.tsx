@@ -57,7 +57,13 @@ export default function Home() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [toasts, setToasts] = useState<Toast[]>([]);
   const [banner, setBanner] = useState<Banner | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [addedToCart, setAddedToCart] = useState(false);
   const { addItem, getTotalItems } = useCartStore();
+
+  // Add refs for caching
+  const categoriesCache = React.useRef<Category[] | null>(null);
+  const productsCache = React.useRef<{ [category: string]: Product[] }>({});
 
   // Fetch banner on component mount
   useEffect(() => {
@@ -77,6 +83,13 @@ export default function Home() {
 
   // Fetch categories on component mount
   useEffect(() => {
+    if (categoriesCache.current) {
+      setCategories(categoriesCache.current);
+      if (categoriesCache.current.length > 0) {
+        setActiveCategory(categoriesCache.current[0].name);
+      }
+      return;
+    }
     const fetchCategories = async () => {
       setIsLoading(true);
       try {
@@ -84,6 +97,7 @@ export default function Home() {
         if (!response.ok) throw new Error('Failed to fetch categories');
         const data = await response.json();
         setCategories(data);
+        categoriesCache.current = data;
         if (data.length > 0) {
           setActiveCategory(data[0].name);
         }
@@ -93,13 +107,16 @@ export default function Home() {
         setIsLoading(false);
       }
     };
-    
     fetchCategories();
   }, []);
 
   // Fetch products when active category changes
   useEffect(() => {
     if (activeCategory) {
+      if (productsCache.current[activeCategory]) {
+        setProducts(productsCache.current[activeCategory]);
+        return;
+      }
       fetchProducts(activeCategory);
     }
   }, [activeCategory]);
@@ -117,6 +134,7 @@ export default function Home() {
         salePrice: product.salePrice != null && typeof product.salePrice === 'string' ? parseFloat(product.salePrice) : product.salePrice,
       }));
       setProducts(parsedData);
+      productsCache.current[category] = parsedData;
     } catch (err) {
       setError('Error fetching products: ' + (err as Error).message);
     } finally {
@@ -134,13 +152,17 @@ export default function Home() {
     size: '', // Always provide a string for size
   });
 
-  const handleViewImages = (images: string[]) => {
-    setSelectedProductImages(images);
+  // Update handleViewImages to accept a Product
+  const handleViewImages = (product: Product) => {
+    setSelectedProduct(product);
+    setSelectedProductImages(product.images);
     setCurrentImageIndex(0);
+    showToast(`Viewing "${product.name}"`);
   };
 
   const closeModal = () => {
     setSelectedProductImages(null);
+    setSelectedProduct(null);
     setCurrentImageIndex(0);
   };
 
@@ -158,7 +180,16 @@ export default function Home() {
 
   const handleAddToCart = (product: Product) => {
     addItem(transformToMenuItem(product));
-    showToast(`Added ${product.name}`);
+    showToast(`Added "${product.name}" to cart`);
+    // Optionally scroll to toast area for visibility:
+    // document.querySelector('.fixed.top-4.right-4')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+
+  // Add animation/message logic for modal Add to Cart
+  const handleAddToCartModal = (product: Product) => {
+    handleAddToCart(product);
+    setAddedToCart(true);
+    setTimeout(() => setAddedToCart(false), 1200);
   };
 
   // Add toast notification
@@ -181,28 +212,30 @@ export default function Home() {
       )}
 
       {/* Header */}
-      <header className="bg-black text-white px-4 py-4 sticky top-0 z-40">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-between mb-6">
-            <h1 className="text-2xl font-bold text-amber-500">Pisey Salon</h1>
+      <header className="bg-black text-white px-4 py-3 sticky top-0 z-40 shadow-md rounded-b-2xl">
+        <div className="max-w-6xl mx-auto flex items-center justify-between">
+          {/* Left: Logo/Title */}
+          <div className="flex-1 flex items-center">
+            <h1 className="text-xl font-bold text-amber-500 tracking-wide">Pisey Salon</h1>
           </div>
-
-          {/* Mobile-friendly category scroll */}
-          <div className="flex overflow-x-auto gap-3 pb-4 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.name)}
-                className={`flex-shrink-0 px-5 py-2 text-sm uppercase rounded-full transition-all duration-200 ${
-                  activeCategory === category.name
-                    ? 'bg-amber-500 text-white shadow-lg'
-                    : 'bg-gray-700 text-white hover:bg-gray-600'
-                }`}
-              >
-                {category.name}
-              </button>
-            ))}
-          </div>
+          {/* Right: Icons */}
+          
+        </div>
+        {/* Mobile-friendly category scroll */}
+        <div className="flex overflow-x-auto gap-3 pb-2 pt-3 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              onClick={() => setActiveCategory(category.name)}
+              className={`flex-shrink-0 px-5 py-2 text-xs uppercase rounded-full transition-all duration-200 ${
+                activeCategory === category.name
+                  ? 'bg-amber-500 text-white shadow-lg'
+                  : 'bg-gray-700 text-white hover:bg-gray-600'
+              }`}
+            >
+              {category.name}
+            </button>
+          ))}
         </div>
       </header>
 
@@ -295,7 +328,7 @@ export default function Home() {
                               src={item.images[0] || 'https://via.placeholder.com/300'}
                               alt={item.name}
                               className="w-full h-48 object-cover cursor-pointer"
-                              onClick={() => handleViewImages(item.images)}
+                              onClick={() => handleViewImages(item)}
                             />
                             {item.badges.map((badge, index) => (
                               <Badge key={index} className={`absolute top-2 ${index === 0 ? 'left-2' : 'right-2'} ${
@@ -345,7 +378,8 @@ export default function Home() {
           </div>
         )}
 
-        {selectedProductImages && (
+        {/* Modal for product images and details */}
+        {selectedProductImages && selectedProduct && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-4 rounded-lg max-w-3xl w-full relative">
               <Button
@@ -359,7 +393,7 @@ export default function Home() {
                 <img
                   src={selectedProductImages[currentImageIndex] || 'https://via.placeholder.com/300'}
                   alt="Product"
-                  className="w-full h-auto max-h-[70vh] object-contain"
+                  className="w-full h-auto max-h-[50vh] object-contain"
                 />
                 {selectedProductImages.length > 1 && (
                   <>
@@ -393,19 +427,69 @@ export default function Home() {
                   />
                 ))}
               </div>
+              {/* Product details */}
+              <div className="mt-6">
+                <h3 className="font-bold text-lg mb-2 text-gray-800">{selectedProduct.name}</h3>
+                <div className="flex items-center gap-2 mb-2">
+                  {selectedProduct.badges.map((badge, idx) => (
+                    <Badge key={idx} className={
+                      `${badge.includes('%') ? 'bg-amber-500' :
+                        badge === 'Popular' ? 'bg-amber-600' :
+                        badge === 'Recommended' ? 'bg-amber-700' :
+                        badge === 'Special' ? 'bg-green-600' :
+                        badge === 'New' ? 'bg-blue-600' :
+                        'bg-gray-600'} text-white`
+                    }>
+                      {badge}
+                    </Badge>
+                  ))}
+                </div>
+                <div className="flex items-center gap-4 mb-2">
+                  <span className="text-lg font-bold text-amber-600">
+                    {typeof selectedProduct.salePrice === 'number' && selectedProduct.salePrice !== null
+                      ? `$${selectedProduct.salePrice.toFixed(2)}`
+                      : '$0.00'}
+                  </span>
+                  <span className="text-xs text-gray-500">{selectedProduct.riels}</span>
+                </div>
+                <Button
+                  onClick={() => handleAddToCartModal(selectedProduct)}
+                  className="bg-black hover:bg-gray-800 text-white rounded-full mt-2"
+                  size="sm"
+                  disabled={addedToCart}
+                >
+                  <Plus className="w-4 h-4" /> Add to Cart
+                </Button>
+                {addedToCart && (
+                  <div className="flex flex-col items-center mt-3 animate-fade-in">
+                    <svg className="w-8 h-8 text-green-500 mb-1 animate-bounce" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-green-600 font-semibold text-sm">Added to cart!</span>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         )}
       </main>
 
       {/* Mobile Bottom Navigation */}
-      <nav className="sm:hidden fixed bottom-1 left-1/2 -translate-x-1/2 w-[90%] bg-black text-white rounded-2xl shadow-lg py-2 px-4 z-40">
+      <nav className="fixed bottom-1 left-1/2 -translate-x-1/2 w-[95%] bg-black text-white rounded-2xl shadow-lg py-2 px-4 z-40 block">
         <div className="flex justify-around items-center">
-          {/* Search */}
+          {/* Home */}
           <Link href="/" className="flex flex-col items-center gap-1 hover:text-amber-400 transition-colors">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l9-9 9 9M4 10v10a1 1 0 001 1h3m10-11v10a1 1 0 01-1 1h-3m-6 0h6" />
+            </svg>
+            <span className="text-[11px]">Home</span>
+          </Link>
+
+          {/* Search */}
+          {/* <Link href="/" className="flex flex-col items-center gap-1 hover:text-amber-400 transition-colors">
             <Search className="w-6 h-6" />
             <span className="text-[11px]">Search</span>
-          </Link>
+          </Link> */}
 
           {/* Cart */}
           <Link href="/cart" className="flex flex-col items-center gap-1 relative hover:text-amber-400 transition-colors">
@@ -426,6 +510,19 @@ export default function Home() {
             <User className="w-6 h-6" />
             <span className="text-[11px]">Account</span>
           </button>
+
+          {/* More */}
+          {/* <button
+            onClick={() => {}} // handleMoreMenu
+            className="flex flex-col items-center gap-1 hover:text-amber-400 transition-colors"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <circle cx="5" cy="12" r="2" />
+              <circle cx="12" cy="12" r="2" />
+              <circle cx="19" cy="12" r="2" />
+            </svg>
+            <span className="text-[11px]">More</span>
+          </button> */}
         </div>
       </nav>
 
@@ -442,6 +539,20 @@ export default function Home() {
         }
         .animate-slide-in {
           animation: slide-in 0.3s ease-out;
+        }
+        @keyframes fade-in {
+          from { opacity: 0; transform: scale(0.95);}
+          to { opacity: 1; transform: scale(1);}
+        }
+        .animate-fade-in {
+          animation: fade-in 0.4s;
+        }
+        .animate-bounce {
+          animation: bounce 0.6s;
+        }
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0);}
+          50% { transform: translateY(-8px);}
         }
         .scrollbar-thin {
           scrollbar-width: thin;

@@ -164,7 +164,6 @@
     --spacing: .25rem;
     --container-md: 28rem;
     --container-lg: 32rem;
-    --container-xl: 36rem;
     --container-3xl: 48rem;
     --container-6xl: 72rem;
     --container-7xl: 80rem;
@@ -193,12 +192,14 @@
     --font-weight-bold: 700;
     --font-weight-extrabold: 800;
     --tracking-tight: -.025em;
+    --tracking-wide: .025em;
     --leading-tight: 1.25;
     --radius-xs: .125rem;
     --radius-2xl: 1rem;
     --drop-shadow-lg: 0 4px 4px rgba(0, 0, 0, .15);
     --animate-spin: spin 1s linear infinite;
     --animate-pulse: pulse 2s cubic-bezier(.4, 0, .6, 1) infinite;
+    --animate-bounce: bounce 1s infinite;
     --default-transition-duration: .15s;
     --default-transition-timing-function: cubic-bezier(.4, 0, .2, 1);
     --default-font-family: var(--font-geist-sans);
@@ -640,14 +641,6 @@
 @layer components;
 
 @layer utilities {
-  .pointer-events-auto {
-    pointer-events: auto;
-  }
-
-  .pointer-events-none {
-    pointer-events: none;
-  }
-
   .sr-only {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
@@ -685,6 +678,10 @@
     top: calc(var(--spacing) * -1.5);
   }
 
+  .-top-2 {
+    top: calc(var(--spacing) * -2);
+  }
+
   .top-0 {
     top: calc(var(--spacing) * 0);
   }
@@ -705,8 +702,8 @@
     top: 50%;
   }
 
-  .top-\[70px\] {
-    top: 70px;
+  .-right-2 {
+    right: calc(var(--spacing) * -2);
   }
 
   .-right-3 {
@@ -751,6 +748,10 @@
 
   .z-20 {
     z-index: 20;
+  }
+
+  .z-30 {
+    z-index: 30;
   }
 
   .z-40 {
@@ -942,6 +943,10 @@
     max-height: calc(var(--spacing) * 60);
   }
 
+  .max-h-\[50vh\] {
+    max-height: 50vh;
+  }
+
   .max-h-\[70vh\] {
     max-height: 70vh;
   }
@@ -1014,8 +1019,8 @@
     width: calc(var(--spacing) * 64);
   }
 
-  .w-\[90\%\] {
-    width: 90%;
+  .w-\[95\%\] {
+    width: 95%;
   }
 
   .w-\[200px\] {
@@ -1052,10 +1057,6 @@
 
   .max-w-md {
     max-width: var(--container-md);
-  }
-
-  .max-w-xl {
-    max-width: var(--container-xl);
   }
 
   .min-w-\[2rem\] {
@@ -1117,6 +1118,10 @@
 
   .transform {
     transform: var(--tw-rotate-x, ) var(--tw-rotate-y, ) var(--tw-rotate-z, ) var(--tw-skew-x, ) var(--tw-skew-y, );
+  }
+
+  .animate-bounce {
+    animation: var(--animate-bounce);
   }
 
   .animate-in {
@@ -1335,6 +1340,11 @@
     border-radius: var(--radius-xs);
   }
 
+  .rounded-b-2xl {
+    border-bottom-right-radius: var(--radius-2xl);
+    border-bottom-left-radius: var(--radius-2xl);
+  }
+
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
@@ -1363,10 +1373,6 @@
   .border-solid {
     --tw-border-style: solid;
     border-style: solid;
-  }
-
-  .border-amber-400 {
-    border-color: var(--color-amber-400);
   }
 
   .border-amber-500 {
@@ -1603,6 +1609,10 @@
     padding-inline: calc(var(--spacing) * 8);
   }
 
+  .px-34 {
+    padding-inline: calc(var(--spacing) * 34);
+  }
+
   .py-0\.5 {
     padding-block: calc(var(--spacing) * .5);
   }
@@ -1637,6 +1647,10 @@
 
   .pt-0 {
     padding-top: calc(var(--spacing) * 0);
+  }
+
+  .pt-3 {
+    padding-top: calc(var(--spacing) * 3);
   }
 
   .pr-2 {
@@ -1754,6 +1768,11 @@
     letter-spacing: var(--tracking-tight);
   }
 
+  .tracking-wide {
+    --tw-tracking: var(--tracking-wide);
+    letter-spacing: var(--tracking-wide);
+  }
+
   .whitespace-nowrap {
     white-space: nowrap;
   }
@@ -1816,6 +1835,10 @@
 
   .text-green-500 {
     color: var(--color-green-500);
+  }
+
+  .text-green-600 {
+    color: var(--color-green-600);
   }
 
   .text-green-700 {
@@ -1983,6 +2006,10 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
+  }
+
+  .fade-in {
+    --tw-enter-opacity: 0;
   }
 
   @media (hover: hover) {
@@ -2225,12 +2252,6 @@
   @media (hover: hover) {
     .hover\:text-gray-800:hover {
       color: var(--color-gray-800);
-    }
-  }
-
-  @media (hover: hover) {
-    .hover\:text-red-500:hover {
-      color: var(--color-red-500);
     }
   }
 
@@ -2683,12 +2704,6 @@
   @media (min-width: 48rem) {
     .md\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (min-width: 48rem) {
-    .md\:flex-row {
-      flex-direction: row;
     }
   }
 
@@ -3311,6 +3326,18 @@
 @keyframes pulse {
   50% {
     opacity: .5;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    animation-timing-function: cubic-bezier(.8, 0, 1, 1);
+    transform: translateY(-25%);
+  }
+
+  50% {
+    animation-timing-function: cubic-bezier(0, 0, .2, 1);
+    transform: none;
   }
 }
 
