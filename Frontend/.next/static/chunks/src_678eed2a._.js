@@ -1077,7 +1077,7 @@ function Products() {
         let category = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : 'all';
         setIsLoading(true);
         try {
-            const url = category === 'all' ? 'https://menu-commerce-backend-production.up.railway.app/api/products' : "https://menu-commerce-backend-production.up.railway.app/api/products/category/".concat(encodeURIComponent(category));
+            const url = category === 'all' ? 'http://localhost:5000/api/products' : "http://localhost:5000/api/products/category/".concat(encodeURIComponent(category));
             const response = await fetch(url);
             if (!response.ok) throw new Error('Failed to fetch products');
             const data = await response.json();
@@ -1091,7 +1091,7 @@ function Products() {
     const fetchCategories = async ()=>{
         setIsLoading(true);
         try {
-            const response = await fetch('https://menu-commerce-backend-production.up.railway.app/api/categories');
+            const response = await fetch('http://localhost:5000/api/categories');
             if (!response.ok) throw new Error('Failed to fetch categories');
             const data = await response.json();
             setCategories(data);
@@ -1119,7 +1119,7 @@ function Products() {
                 color: newProduct.color || '',
                 category: newProduct.category
             };
-            const url = editingProductId ? "https://menu-commerce-backend-production.up.railway.app/api/products/".concat(editingProductId) : 'https://menu-commerce-backend-production.up.railway.app/api/products';
+            const url = editingProductId ? "http://localhost:5000/api/products/".concat(editingProductId) : 'http://localhost:5000/api/products';
             const method = editingProductId ? 'PUT' : 'POST';
             const response = await fetch(url, {
                 method,
@@ -1166,7 +1166,7 @@ function Products() {
         setIsLoading(true);
         setError(null);
         try {
-            const url = editingCategoryId ? "https://menu-commerce-backend-production.up.railway.app/api/categories/".concat(editingCategoryId) : 'https://menu-commerce-backend-production.up.railway.app/api/categories';
+            const url = editingCategoryId ? "http://localhost:5000/api/categories/".concat(editingCategoryId) : 'http://localhost:5000/api/categories';
             const method = editingCategoryId ? 'PUT' : 'POST';
             const response = await fetch(url, {
                 method,
@@ -1198,7 +1198,7 @@ function Products() {
         setIsLoading(true);
         setError(null);
         try {
-            const response = await fetch("https://menu-commerce-backend-production.up.railway.app/api/products/".concat(productId), {
+            const response = await fetch("http://localhost:5000/api/products/".concat(productId), {
                 method: 'DELETE'
             });
             if (!response.ok) {
@@ -1216,7 +1216,7 @@ function Products() {
         setIsLoading(true);
         setError(null);
         try {
-            const response = await fetch("https://menu-commerce-backend-production.up.railway.app/api/categories/".concat(encodeURIComponent(categoryName)), {
+            const response = await fetch("http://localhost:5000/api/categories/".concat(encodeURIComponent(categoryName)), {
                 method: 'DELETE'
             });
             if (!response.ok) {
@@ -1286,7 +1286,7 @@ function Products() {
         fetchProducts(value);
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "jsx-bea9d523065a686c" + " " + "flex min-h-screen bg-gray-100",
+        className: "jsx-bd3ad07fb962e361" + " " + "flex min-h-screen bg-gray-100",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$sidebar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -1294,13 +1294,13 @@ function Products() {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "jsx-bea9d523065a686c" + " " + "flex-1 p-1 sm:p-6 max-w-full",
+                className: "jsx-bd3ad07fb962e361" + " " + "flex-1 p-1 sm:p-6 max-w-full",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "jsx-bea9d523065a686c" + " " + "md:hidden sticky top-0 z-20 bg-white shadow-sm flex items-center justify-between px-4 py-3",
+                        className: "jsx-bd3ad07fb962e361" + " " + "md:hidden sticky top-0 z-20 bg-white shadow-sm flex items-center justify-between px-4 py-3",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                                className: "jsx-bea9d523065a686c" + " " + "text-lg font-bold text-gray-800",
+                                className: "jsx-bd3ad07fb962e361" + " " + "text-lg font-bold text-gray-800",
                                 children: "Products"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -1308,7 +1308,7 @@ function Products() {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "jsx-bea9d523065a686c" + " " + "flex gap-2",
+                                className: "jsx-bd3ad07fb962e361" + " " + "flex gap-2",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
                                         open: isProductDialogOpen,
@@ -1365,14 +1365,14 @@ function Products() {
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "jsx-bea9d523065a686c" + " " + "grid gap-4 py-4 max-h-[80vh] overflow-y-auto",
+                                                        className: "jsx-bd3ad07fb962e361" + " " + "grid gap-4 py-4 max-h-[80vh] overflow-y-auto",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "jsx-bea9d523065a686c" + " " + "grid grid-cols-1 sm:grid-cols-4 items-center gap-4",
+                                                                className: "jsx-bd3ad07fb962e361" + " " + "grid grid-cols-1 sm:grid-cols-4 items-center gap-4",
                                                                 children: [
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                                                         htmlFor: "id",
-                                                                        className: "jsx-bea9d523065a686c" + " " + "text-sm font-medium text-gray-700 sm:text-right sm:col-span-1",
+                                                                        className: "jsx-bd3ad07fb962e361" + " " + "text-sm font-medium text-gray-700 sm:text-right sm:col-span-1",
                                                                         children: "ID"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -1401,11 +1401,11 @@ function Products() {
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "jsx-bea9d523065a686c" + " " + "grid grid-cols-1 sm:grid-cols-4 items-center gap-4",
+                                                                className: "jsx-bd3ad07fb962e361" + " " + "grid grid-cols-1 sm:grid-cols-4 items-center gap-4",
                                                                 children: [
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                                                         htmlFor: "name",
-                                                                        className: "jsx-bea9d523065a686c" + " " + "text-sm font-medium text-gray-700 sm:text-right sm:col-span-1",
+                                                                        className: "jsx-bd3ad07fb962e361" + " " + "text-sm font-medium text-gray-700 sm:text-right sm:col-span-1",
                                                                         children: "Name"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -1434,11 +1434,11 @@ function Products() {
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "jsx-bea9d523065a686c" + " " + "grid grid-cols-1 sm:grid-cols-4 items-center gap-4",
+                                                                className: "jsx-bd3ad07fb962e361" + " " + "grid grid-cols-1 sm:grid-cols-4 items-center gap-4",
                                                                 children: [
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                                                         htmlFor: "salePrice",
-                                                                        className: "jsx-bea9d523065a686c" + " " + "text-sm font-medium text-gray-700 sm:text-right sm:col-span-1",
+                                                                        className: "jsx-bd3ad07fb962e361" + " " + "text-sm font-medium text-gray-700 sm:text-right sm:col-span-1",
                                                                         children: "Sale Price"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -1468,11 +1468,11 @@ function Products() {
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "jsx-bea9d523065a686c" + " " + "grid grid-cols-1 sm:grid-cols-4 items-center gap-4",
+                                                                className: "jsx-bd3ad07fb962e361" + " " + "grid grid-cols-1 sm:grid-cols-4 items-center gap-4",
                                                                 children: [
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                                                         htmlFor: "riels",
-                                                                        className: "jsx-bea9d523065a686c" + " " + "text-sm font-medium text-gray-700 sm:text-right sm:col-span-1",
+                                                                        className: "jsx-bd3ad07fb962e361" + " " + "text-sm font-medium text-gray-700 sm:text-right sm:col-span-1",
                                                                         children: "Riels"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -1501,11 +1501,11 @@ function Products() {
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "jsx-bea9d523065a686c" + " " + "grid grid-cols-1 sm:grid-cols-4 items-center gap-4",
+                                                                className: "jsx-bd3ad07fb962e361" + " " + "grid grid-cols-1 sm:grid-cols-4 items-center gap-4",
                                                                 children: [
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                                                         htmlFor: "category",
-                                                                        className: "jsx-bea9d523065a686c" + " " + "text-sm font-medium text-gray-700 sm:text-right sm:col-span-1",
+                                                                        className: "jsx-bd3ad07fb962e361" + " " + "text-sm font-medium text-gray-700 sm:text-right sm:col-span-1",
                                                                         children: "Category"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -1520,11 +1520,11 @@ function Products() {
                                                                                 category: e.target.value
                                                                             }),
                                                                         disabled: isLoading,
-                                                                        className: "jsx-bea9d523065a686c" + " " + "sm:col-span-3 p-2 border rounded-md bg-white text-gray-700",
+                                                                        className: "jsx-bd3ad07fb962e361" + " " + "sm:col-span-3 p-2 border rounded-md bg-white text-gray-700",
                                                                         children: [
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                                                 value: "",
-                                                                                className: "jsx-bea9d523065a686c",
+                                                                                className: "jsx-bd3ad07fb962e361",
                                                                                 children: "Select category"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -1533,7 +1533,7 @@ function Products() {
                                                                             }, this),
                                                                             categories.map((category)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                                                     value: category.name,
-                                                                                    className: "jsx-bea9d523065a686c",
+                                                                                    className: "jsx-bd3ad07fb962e361",
                                                                                     children: category.name
                                                                                 }, category.id, false, {
                                                                                     fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -1553,7 +1553,7 @@ function Products() {
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "jsx-bea9d523065a686c" + " " + "grid grid-cols-2 sm:grid-cols-4 gap-4",
+                                                                className: "jsx-bd3ad07fb962e361" + " " + "grid grid-cols-2 sm:grid-cols-4 gap-4",
                                                                 children: [
                                                                     0,
                                                                     1,
@@ -1567,10 +1567,10 @@ function Products() {
                                                                             const input = document.getElementById("image-input-".concat(index));
                                                                             if (input) input.click();
                                                                         },
-                                                                        className: "jsx-bea9d523065a686c" + " " + "flex flex-col items-center cursor-pointer group",
+                                                                        className: "jsx-bd3ad07fb962e361" + " " + "flex flex-col items-center cursor-pointer group",
                                                                         children: [
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                                                className: "jsx-bea9d523065a686c" + " " + "text-sm font-medium text-gray-700 mb-1 group-hover:text-blue-600",
+                                                                                className: "jsx-bd3ad07fb962e361" + " " + "text-sm font-medium text-gray-700 mb-1 group-hover:text-blue-600",
                                                                                 children: "Image ".concat(index + 1)
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -1580,13 +1580,13 @@ function Products() {
                                                                             newProduct.images[index] ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                                                                 src: newProduct.images[index],
                                                                                 alt: "Preview ".concat(index + 1),
-                                                                                className: "jsx-bea9d523065a686c" + " " + "w-24 h-24 sm:w-20 sm:h-20 object-cover rounded mb-1 border group-hover:ring-2 group-hover:ring-blue-400 transition"
+                                                                                className: "jsx-bd3ad07fb962e361" + " " + "w-24 h-24 sm:w-20 sm:h-20 object-cover rounded mb-1 border group-hover:ring-2 group-hover:ring-blue-400 transition"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/src/app/dashboard/products/page.tsx",
                                                                                 lineNumber: 390,
                                                                                 columnNumber: 27
                                                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                                className: "jsx-bea9d523065a686c" + " " + "w-24 h-24 sm:w-20 sm:h-20 bg-gray-200 rounded mb-1 flex items-center justify-center text-gray-400 text-xs border group-hover:ring-2 group-hover:ring-blue-400 transition",
+                                                                                className: "jsx-bd3ad07fb962e361" + " " + "w-24 h-24 sm:w-20 sm:h-20 bg-gray-200 rounded mb-1 flex items-center justify-center text-gray-400 text-xs border group-hover:ring-2 group-hover:ring-blue-400 transition",
                                                                                 children: "No Image"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -1607,7 +1607,7 @@ function Products() {
                                                                                 },
                                                                                 disabled: isLoading,
                                                                                 tabIndex: -1,
-                                                                                className: "jsx-bea9d523065a686c"
+                                                                                className: "jsx-bd3ad07fb962e361"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/src/app/dashboard/products/page.tsx",
                                                                                 lineNumber: 400,
@@ -1625,11 +1625,11 @@ function Products() {
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "jsx-bea9d523065a686c" + " " + "grid grid-cols-1 sm:grid-cols-4 items-center gap-4",
+                                                                className: "jsx-bd3ad07fb962e361" + " " + "grid grid-cols-1 sm:grid-cols-4 items-center gap-4",
                                                                 children: [
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                                                         htmlFor: "badges",
-                                                                        className: "jsx-bea9d523065a686c" + " " + "text-sm font-medium text-gray-700 sm:text-right sm:col-span-1",
+                                                                        className: "jsx-bd3ad07fb962e361" + " " + "text-sm font-medium text-gray-700 sm:text-right sm:col-span-1",
                                                                         children: "Badges"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -1658,11 +1658,11 @@ function Products() {
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "jsx-bea9d523065a686c" + " " + "grid grid-cols-1 sm:grid-cols-4 items-center gap-4",
+                                                                className: "jsx-bd3ad07fb962e361" + " " + "grid grid-cols-1 sm:grid-cols-4 items-center gap-4",
                                                                 children: [
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                                                         htmlFor: "quantity",
-                                                                        className: "jsx-bea9d523065a686c" + " " + "text-sm font-medium text-gray-700 sm:text-right sm:col-span-1",
+                                                                        className: "jsx-bd3ad07fb962e361" + " " + "text-sm font-medium text-gray-700 sm:text-right sm:col-span-1",
                                                                         children: "Quantity"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -1691,11 +1691,11 @@ function Products() {
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "jsx-bea9d523065a686c" + " " + "grid grid-cols-1 sm:grid-cols-4 items-center gap-4",
+                                                                className: "jsx-bd3ad07fb962e361" + " " + "grid grid-cols-1 sm:grid-cols-4 items-center gap-4",
                                                                 children: [
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                                                         htmlFor: "color",
-                                                                        className: "jsx-bea9d523065a686c" + " " + "text-sm font-medium text-gray-700 sm:text-right sm:col-span-1",
+                                                                        className: "jsx-bd3ad07fb962e361" + " " + "text-sm font-medium text-gray-700 sm:text-right sm:col-span-1",
                                                                         children: "Color"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -1797,7 +1797,7 @@ function Products() {
                                                     size: "icon",
                                                     disabled: isLoading,
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "jsx-bea9d523065a686c" + " " + "text-lg",
+                                                        className: "jsx-bd3ad07fb962e361" + " " + "text-lg",
                                                         children: "≡"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -1825,13 +1825,13 @@ function Products() {
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "jsx-bea9d523065a686c" + " " + "grid gap-4 py-4 max-h-[80vh] overflow-y-auto",
+                                                        className: "jsx-bd3ad07fb962e361" + " " + "grid gap-4 py-4 max-h-[80vh] overflow-y-auto",
                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "jsx-bea9d523065a686c" + " " + "grid grid-cols-4 items-center gap-4",
+                                                            className: "jsx-bd3ad07fb962e361" + " " + "grid grid-cols-4 items-center gap-4",
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                                                     htmlFor: "categoryName",
-                                                                    className: "jsx-bea9d523065a686c" + " " + "text-right text-sm font-medium text-gray-700",
+                                                                    className: "jsx-bd3ad07fb962e361" + " " + "text-right text-sm font-medium text-gray-700",
                                                                     children: "Category Name"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -1924,10 +1924,10 @@ function Products() {
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "jsx-bea9d523065a686c" + " " + "hidden md:flex justify-between items-center mb-6",
+                        className: "jsx-bd3ad07fb962e361" + " " + "hidden md:flex justify-between items-center mb-6",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                                className: "jsx-bea9d523065a686c" + " " + "text-3xl font-bold text-gray-800",
+                                className: "jsx-bd3ad07fb962e361" + " " + "text-3xl font-bold text-gray-800",
                                 children: "Products"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -1935,16 +1935,16 @@ function Products() {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "jsx-bea9d523065a686c" + " " + "flex items-center gap-4",
+                                className: "jsx-bd3ad07fb962e361" + " " + "flex items-center gap-4",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
                                         value: categoryFilter,
                                         onChange: (e)=>handleCategoryFilterChange(e.target.value),
-                                        className: "jsx-bea9d523065a686c" + " " + "w-[200px] p-2 border rounded-md bg-white text-gray-700",
+                                        className: "jsx-bd3ad07fb962e361" + " " + "w-[200px] p-2 border rounded-md bg-white text-gray-700",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                 value: "all",
-                                                className: "jsx-bea9d523065a686c",
+                                                className: "jsx-bd3ad07fb962e361",
                                                 children: "All Categories"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -1953,7 +1953,7 @@ function Products() {
                                             }, this),
                                             categories.map((category)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                     value: category.name,
-                                                    className: "jsx-bea9d523065a686c",
+                                                    className: "jsx-bd3ad07fb962e361",
                                                     children: category.name
                                                 }, category.id, false, {
                                                     fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -2028,15 +2028,15 @@ function Products() {
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "jsx-bea9d523065a686c" + " " + "md:hidden mb-3 px-2",
+                        className: "jsx-bd3ad07fb962e361" + " " + "md:hidden mb-3 px-2",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
                             value: categoryFilter,
                             onChange: (e)=>handleCategoryFilterChange(e.target.value),
-                            className: "jsx-bea9d523065a686c" + " " + "w-full p-2 border rounded-md bg-white text-gray-700",
+                            className: "jsx-bd3ad07fb962e361" + " " + "w-full p-2 border rounded-md bg-white text-gray-700",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                     value: "all",
-                                    className: "jsx-bea9d523065a686c",
+                                    className: "jsx-bd3ad07fb962e361",
                                     children: "All Categories"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -2045,7 +2045,7 @@ function Products() {
                                 }, this),
                                 categories.map((category)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                         value: category.name,
-                                        className: "jsx-bea9d523065a686c",
+                                        className: "jsx-bd3ad07fb962e361",
                                         children: category.name
                                     }, category.id, false, {
                                         fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -2082,7 +2082,7 @@ function Products() {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
                                 children: isLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "jsx-bea9d523065a686c",
+                                    className: "jsx-bd3ad07fb962e361",
                                     children: "Loading categories..."
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -2091,14 +2091,14 @@ function Products() {
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "jsx-bea9d523065a686c" + " " + "md:hidden flex flex-col gap-2",
+                                            className: "jsx-bd3ad07fb962e361" + " " + "md:hidden flex flex-col gap-2",
                                             children: categories.map((category)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "jsx-bea9d523065a686c" + " " + "bg-white rounded shadow p-3 flex justify-between items-center",
+                                                    className: "jsx-bd3ad07fb962e361" + " " + "bg-white rounded shadow p-3 flex justify-between items-center",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "jsx-bea9d523065a686c",
+                                                            className: "jsx-bd3ad07fb962e361",
                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "jsx-bea9d523065a686c" + " " + "font-semibold",
+                                                                className: "jsx-bd3ad07fb962e361" + " " + "font-semibold",
                                                                 children: category.name
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -2111,7 +2111,7 @@ function Products() {
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "jsx-bea9d523065a686c" + " " + "flex gap-1",
+                                                            className: "jsx-bd3ad07fb962e361" + " " + "flex gap-1",
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                                                     variant: "outline",
@@ -2161,9 +2161,9 @@ function Products() {
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "jsx-bea9d523065a686c" + " " + "hidden md:block w-full overflow-x-scroll scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100",
+                                            className: "jsx-bd3ad07fb962e361" + " " + "hidden md:block w-full overflow-x-scroll scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "jsx-bea9d523065a686c" + " " + "min-w-[600px]",
+                                                className: "jsx-bd3ad07fb962e361" + " " + "min-w-[600px]",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Table"], {
                                                     className: "w-full",
                                                     children: [
@@ -2306,7 +2306,7 @@ function Products() {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
                                 children: isLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "jsx-bea9d523065a686c",
+                                    className: "jsx-bd3ad07fb962e361",
                                     children: "Loading products..."
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -2315,25 +2315,25 @@ function Products() {
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "jsx-bea9d523065a686c" + " " + "md:hidden flex flex-col gap-3",
+                                            className: "jsx-bd3ad07fb962e361" + " " + "md:hidden flex flex-col gap-3",
                                             children: products.map((product)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "jsx-bea9d523065a686c" + " " + "bg-white rounded shadow p-3 flex flex-col gap-2",
+                                                    className: "jsx-bd3ad07fb962e361" + " " + "bg-white rounded shadow p-3 flex flex-col gap-2",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "jsx-bea9d523065a686c" + " " + "flex gap-2 items-center",
+                                                            className: "jsx-bd3ad07fb962e361" + " " + "flex gap-2 items-center",
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "jsx-bea9d523065a686c" + " " + "flex gap-1",
+                                                                    className: "jsx-bd3ad07fb962e361" + " " + "flex gap-1",
                                                                     children: product.images.slice(0, 1).map((image, idx)=>image ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                                                             src: image,
                                                                             alt: product.name,
-                                                                            className: "jsx-bea9d523065a686c" + " " + "w-16 h-16 object-cover rounded"
+                                                                            className: "jsx-bd3ad07fb962e361" + " " + "w-16 h-16 object-cover rounded"
                                                                         }, idx, false, {
                                                                             fileName: "[project]/src/app/dashboard/products/page.tsx",
                                                                             lineNumber: 677,
                                                                             columnNumber: 31
                                                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                            className: "jsx-bea9d523065a686c" + " " + "w-16 h-16 bg-gray-200 rounded flex items-center justify-center text-xs text-gray-400",
+                                                                            className: "jsx-bd3ad07fb962e361" + " " + "w-16 h-16 bg-gray-200 rounded flex items-center justify-center text-xs text-gray-400",
                                                                             children: "No Image"
                                                                         }, idx, false, {
                                                                             fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -2346,10 +2346,10 @@ function Products() {
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "jsx-bea9d523065a686c" + " " + "flex-1",
+                                                                    className: "jsx-bd3ad07fb962e361" + " " + "flex-1",
                                                                     children: [
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                            className: "jsx-bea9d523065a686c" + " " + "font-semibold",
+                                                                            className: "jsx-bd3ad07fb962e361" + " " + "font-semibold",
                                                                             children: product.name
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -2357,7 +2357,7 @@ function Products() {
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                            className: "jsx-bea9d523065a686c" + " " + "text-xs text-gray-400",
+                                                                            className: "jsx-bd3ad07fb962e361" + " " + "text-xs text-gray-400",
                                                                             children: product.category || '-'
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -2371,7 +2371,7 @@ function Products() {
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "jsx-bea9d523065a686c" + " " + "flex flex-col gap-1",
+                                                                    className: "jsx-bd3ad07fb962e361" + " " + "flex flex-col gap-1",
                                                                     children: [
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                                                             variant: "outline",
@@ -2416,10 +2416,10 @@ function Products() {
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "jsx-bea9d523065a686c" + " " + "flex flex-wrap gap-2 text-xs",
+                                                            className: "jsx-bd3ad07fb962e361" + " " + "flex flex-wrap gap-2 text-xs",
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "jsx-bea9d523065a686c",
+                                                                    className: "jsx-bd3ad07fb962e361",
                                                                     children: [
                                                                         "Sale: ",
                                                                         product.salePrice ? "$".concat(parseFloat(product.salePrice.toString()).toFixed(2)) : '-'
@@ -2430,7 +2430,7 @@ function Products() {
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "jsx-bea9d523065a686c",
+                                                                    className: "jsx-bd3ad07fb962e361",
                                                                     children: [
                                                                         "Riels: ",
                                                                         product.riels
@@ -2441,7 +2441,7 @@ function Products() {
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "jsx-bea9d523065a686c",
+                                                                    className: "jsx-bd3ad07fb962e361",
                                                                     children: [
                                                                         "Qty: ",
                                                                         product.quantity || '-'
@@ -2452,7 +2452,7 @@ function Products() {
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "jsx-bea9d523065a686c",
+                                                                    className: "jsx-bd3ad07fb962e361",
                                                                     children: [
                                                                         "Color: ",
                                                                         product.color || '-'
@@ -2469,7 +2469,7 @@ function Products() {
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "jsx-bea9d523065a686c" + " " + "flex flex-wrap gap-1",
+                                                            className: "jsx-bd3ad07fb962e361" + " " + "flex flex-wrap gap-1",
                                                             children: product.badges.length > 0 ? product.badges.map((badge, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
                                                                     className: "mr-1",
                                                                     children: badge
@@ -2478,7 +2478,7 @@ function Products() {
                                                                     lineNumber: 715,
                                                                     columnNumber: 29
                                                                 }, this)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "jsx-bea9d523065a686c" + " " + "text-xs text-gray-400",
+                                                                className: "jsx-bd3ad07fb962e361" + " " + "text-xs text-gray-400",
                                                                 children: "No badges"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/dashboard/products/page.tsx",
@@ -2502,9 +2502,9 @@ function Products() {
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "jsx-bea9d523065a686c" + " " + "hidden md:block w-full overflow-x-scroll scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100",
+                                            className: "jsx-bd3ad07fb962e361" + " " + "hidden md:block w-full overflow-x-scroll scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "jsx-bea9d523065a686c" + " " + "min-w-[1100px]",
+                                                className: "jsx-bd3ad07fb962e361" + " " + "min-w-[1100px]",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Table"], {
                                                     className: "w-full",
                                                     children: [
@@ -2615,11 +2615,11 @@ function Products() {
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
                                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                                className: "jsx-bea9d523065a686c" + " " + "flex gap-2",
+                                                                                className: "jsx-bd3ad07fb962e361" + " " + "flex gap-2",
                                                                                 children: product.images.map((image, index)=>image && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                                                                         src: image,
                                                                                         alt: "".concat(product.name, " ").concat(index + 1),
-                                                                                        className: "jsx-bea9d523065a686c" + " " + "w-12 h-12 object-cover rounded"
+                                                                                        className: "jsx-bd3ad07fb962e361" + " " + "w-12 h-12 object-cover rounded"
                                                                                     }, index, false, {
                                                                                         fileName: "[project]/src/app/dashboard/products/page.tsx",
                                                                                         lineNumber: 749,
@@ -2777,7 +2777,7 @@ function Products() {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$jsx$2f$style$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                id: "bea9d523065a686c",
+                id: "bd3ad07fb962e361",
                 children: ".dialog-content{width:100%!important;min-width:0!important;max-width:100vw!important;padding-left:.5rem!important;padding-right:.5rem!important}@media (min-width:640px){.dialog-content{max-width:425px!important;margin-left:auto!important;margin-right:auto!important}}@media (max-width:639px){.dialog-content{border-radius:0!important;min-height:100vh!important;padding-top:1.5rem!important;padding-bottom:1.5rem!important}}.scrollbar-thin{scrollbar-width:thin}.scrollbar-thumb-gray-300::-webkit-scrollbar-thumb{background:#d1d5db}.scrollbar-track-gray-100::-webkit-scrollbar-track{background:#f3f4f6}.scrollbar-thin::-webkit-scrollbar{height:8px}"
             }, void 0, false, void 0, this)
         ]
@@ -2787,7 +2787,7 @@ function Products() {
         columnNumber: 5
     }, this);
 }
-_s(Products, "u93QAnbtLKv9e7EQkBKPzFtZ9ls=");
+_s(Products, "PbVPkDntT5xWakCdvu1/VKY9How=");
 _c = Products;
 var _c;
 __turbopack_context__.k.register(_c, "Products");

@@ -216,7 +216,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           {/* Left: Logo/Title */}
           <div className="flex-1 flex items-center">
-            <h1 className="text-xl font-bold text-amber-500 tracking-wide">Pisey Salon</h1>
+            <h1 className="text-xl font-bold text-amber-500 tracking-wide">Phala Online</h1>
           </div>
           {/* Right: Icons */}
           

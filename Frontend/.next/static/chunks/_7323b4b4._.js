@@ -5,6 +5,149 @@
 
 var { k: __turbopack_refresh__, m: module } = __turbopack_context__;
 {
+// "use client";
+// import { useState } from 'react';
+// import { useRouter } from 'next/navigation';
+// import Head from 'next/head';
+// import Link from 'next/link';
+// export default function AdminLogin() {
+//   const [email, setEmail] = useState('');
+//   const [password, setPassword] = useState('');
+//   const [error, setError] = useState('');
+//   const [loading, setLoading] = useState(false);
+//   const [success, setSuccess] = useState(false);
+//   const router = useRouter();
+//   // Get admin credentials from environment variables
+//   const ADMIN_CREDENTIALS = {
+//     email: process.env.NEXT_PUBLIC_ADMIN_EMAIL,
+//     password: process.env.NEXT_PUBLIC_ADMIN_PASSWORD
+//   };
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     setError('');
+//     setLoading(true);
+//     // Basic validation
+//     if (!email || !password) {
+//       setError('Please fill in all fields');
+//       setLoading(false);
+//       return;
+//     }
+//     if (!/\S+@\S+\.\S+/.test(email)) {
+//       setError('Please enter a valid email');
+//       setLoading(false);
+//       return;
+//     }
+//     try {
+//       // Simulate API call delay
+//       await new Promise(resolve => setTimeout(resolve, 500));
+//       // Check credentials against environment variables
+//       if (email !== ADMIN_CREDENTIALS.email || password !== ADMIN_CREDENTIALS.password) {
+//         throw new Error('Invalid credentials');
+//       }
+//       // Successful login
+//       setSuccess(true);
+//       // Store dummy admin data in localStorage
+//       localStorage.setItem('adminToken', 'dummy-admin-token');
+//       localStorage.setItem('adminUser', JSON.stringify({
+//         id: 1,
+//         name: 'Admin User',
+//         email: ADMIN_CREDENTIALS.email,
+//         role: 'admin'
+//       }));
+//       // Redirect to admin dashboard after a brief delay
+//       setTimeout(() => {
+//         router.push('/dashboard');
+//       }, 1500);
+//     } catch (err) {
+//       console.error('Login error:', err);
+//       setError(err.message || 'An error occurred during login');
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+//   // ... rest of the component remains the same ...
+//   return (
+//     <>
+//       <Head>
+//         <title>Admin Login</title>
+//         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+//       </Head>
+//       <div className="min-h-screen flex items-center justify-center bg-gray-100">
+//         <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+//           <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">Admin Login</h1>
+//           {/* Error Message */}
+//           {error && (
+//             <div className="mb-4 p-3 bg-red-100 text-red-700 rounded text-sm">
+//               {error}
+//             </div>
+//           )}
+//           {/* Success Message */}
+//           {success && (
+//             <div className="mb-4 p-3 bg-green-100 text-green-700 rounded text-sm">
+//               Login successful! Redirecting to dashboard...
+//             </div>
+//           )}
+//           <form onSubmit={handleSubmit} className="space-y-4">
+//             <div>
+//               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+//                 Email
+//               </label>
+//               <input
+//                 id="email"
+//                 type="email"
+//                 value={email}
+//                 onChange={(e) => setEmail(e.target.value)}
+//                 className="mt-1 w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+//                 placeholder="admin@example.com"
+//                 required
+//               />
+//             </div>
+//             <div>
+//               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+//                 Password
+//               </label>
+//               <input
+//                 id="password"
+//                 type="password"
+//                 value={password}
+//                 onChange={(e) => setPassword(e.target.value)}
+//                 className="mt-1 w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+//                 placeholder="********"
+//                 required
+//               />
+//             </div>
+//             <button
+//               type="submit"
+//               disabled={loading}
+//               className={`w-full p-2 rounded transition duration-200 ${
+//                 loading
+//                   ? 'bg-blue-400 cursor-not-allowed'
+//                   : 'bg-blue-600 hover:bg-blue-700 text-white'
+//               }`}
+//             >
+//               {loading ? (
+//                 <span className="flex items-center justify-center">
+//                   <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+//                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+//                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+//                   </svg>
+//                   Logging in...
+//                 </span>
+//               ) : (
+//                 'Log In'
+//               )}
+//             </button>
+//           </form>
+//           <div className="mt-4 text-center text-sm text-gray-600">
+//             <Link href="/" className="text-blue-600 hover:underline">
+//               ← Back to main site
+//             </Link>
+//           </div>
+//         </div>
+//       </div>
+//     </>
+//   );
+// }
 __turbopack_context__.s({
     "default": ()=>AdminLogin
 });
@@ -23,9 +166,9 @@ var _s = __turbopack_context__.k.signature();
 ;
 function AdminLogin() {
     _s();
-    const [email, setEmail] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
-    const [password, setPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
-    const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
+    const [email, setEmail] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [password, setPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [success, setSuccess] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
@@ -36,16 +179,16 @@ function AdminLogin() {
     };
     const handleSubmit = async (e)=>{
         e.preventDefault();
-        setError('');
+        setError("");
         setLoading(true);
         // Basic validation
         if (!email || !password) {
-            setError('Please fill in all fields');
+            setError("Please fill in all fields");
             setLoading(false);
             return;
         }
         if (!/\S+@\S+\.\S+/.test(email)) {
-            setError('Please enter a valid email');
+            setError("Please enter a valid email");
             setLoading(false);
             return;
         }
@@ -54,30 +197,33 @@ function AdminLogin() {
             await new Promise((resolve)=>setTimeout(resolve, 500));
             // Check credentials against environment variables
             if (email !== ADMIN_CREDENTIALS.email || password !== ADMIN_CREDENTIALS.password) {
-                throw new Error('Invalid credentials');
+                throw new Error("Invalid credentials");
             }
             // Successful login
             setSuccess(true);
             // Store dummy admin data in localStorage
-            localStorage.setItem('adminToken', 'dummy-admin-token');
-            localStorage.setItem('adminUser', JSON.stringify({
+            localStorage.setItem("adminToken", "dummy-admin-token");
+            localStorage.setItem("adminUser", JSON.stringify({
                 id: 1,
-                name: 'Admin User',
+                name: "Admin User",
                 email: ADMIN_CREDENTIALS.email,
-                role: 'admin'
+                role: "admin"
             }));
             // Redirect to admin dashboard after a brief delay
             setTimeout(()=>{
-                router.push('/dashboard');
+                router.push("/dashboard");
             }, 1500);
         } catch (err) {
-            console.error('Login error:', err);
-            setError(err.message || 'An error occurred during login');
+            console.error("Login error:", err);
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError("An error occurred during login");
+            }
         } finally{
             setLoading(false);
         }
     };
-    // ... rest of the component remains the same ...
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$components$2f$noop$2d$head$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -86,7 +232,7 @@ function AdminLogin() {
                         children: "Admin Login"
                     }, void 0, false, {
                         fileName: "[project]/src/app/404found/page.tsx",
-                        lineNumber: 78,
+                        lineNumber: 251,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
@@ -94,13 +240,13 @@ function AdminLogin() {
                         content: "width=device-width, initial-scale=1.0"
                     }, void 0, false, {
                         fileName: "[project]/src/app/404found/page.tsx",
-                        lineNumber: 79,
+                        lineNumber: 252,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/404found/page.tsx",
-                lineNumber: 77,
+                lineNumber: 250,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -113,7 +259,7 @@ function AdminLogin() {
                             children: "Admin Login"
                         }, void 0, false, {
                             fileName: "[project]/src/app/404found/page.tsx",
-                            lineNumber: 83,
+                            lineNumber: 256,
                             columnNumber: 11
                         }, this),
                         error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -121,7 +267,7 @@ function AdminLogin() {
                             children: error
                         }, void 0, false, {
                             fileName: "[project]/src/app/404found/page.tsx",
-                            lineNumber: 87,
+                            lineNumber: 262,
                             columnNumber: 13
                         }, this),
                         success && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -129,7 +275,7 @@ function AdminLogin() {
                             children: "Login successful! Redirecting to dashboard..."
                         }, void 0, false, {
                             fileName: "[project]/src/app/404found/page.tsx",
-                            lineNumber: 94,
+                            lineNumber: 269,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -144,7 +290,7 @@ function AdminLogin() {
                                             children: "Email"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/404found/page.tsx",
-                                            lineNumber: 101,
+                                            lineNumber: 276,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -157,13 +303,13 @@ function AdminLogin() {
                                             required: true
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/404found/page.tsx",
-                                            lineNumber: 104,
+                                            lineNumber: 282,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/404found/page.tsx",
-                                    lineNumber: 100,
+                                    lineNumber: 275,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -174,7 +320,7 @@ function AdminLogin() {
                                             children: "Password"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/404found/page.tsx",
-                                            lineNumber: 116,
+                                            lineNumber: 296,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -187,19 +333,19 @@ function AdminLogin() {
                                             required: true
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/404found/page.tsx",
-                                            lineNumber: 119,
+                                            lineNumber: 302,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/404found/page.tsx",
-                                    lineNumber: 115,
+                                    lineNumber: 295,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     type: "submit",
                                     disabled: loading,
-                                    className: "w-full p-2 rounded transition duration-200 ".concat(loading ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 text-white'),
+                                    className: "w-full p-2 rounded transition duration-200 ".concat(loading ? "bg-blue-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700 text-white"),
                                     children: loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         className: "flex items-center justify-center",
                                         children: [
@@ -218,40 +364,40 @@ function AdminLogin() {
                                                         strokeWidth: "4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/404found/page.tsx",
-                                                        lineNumber: 142,
+                                                        lineNumber: 332,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                                         className: "opacity-75",
                                                         fill: "currentColor",
-                                                        d: "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                                        d: "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014  12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/404found/page.tsx",
-                                                        lineNumber: 143,
+                                                        lineNumber: 340,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/404found/page.tsx",
-                                                lineNumber: 141,
+                                                lineNumber: 326,
                                                 columnNumber: 19
                                             }, this),
                                             "Logging in..."
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/404found/page.tsx",
-                                        lineNumber: 140,
+                                        lineNumber: 325,
                                         columnNumber: 17
-                                    }, this) : 'Log In'
+                                    }, this) : "Log In"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/404found/page.tsx",
-                                    lineNumber: 130,
+                                    lineNumber: 315,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/404found/page.tsx",
-                            lineNumber: 99,
+                            lineNumber: 274,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -262,29 +408,29 @@ function AdminLogin() {
                                 children: "← Back to main site"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/404found/page.tsx",
-                                lineNumber: 154,
+                                lineNumber: 356,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/404found/page.tsx",
-                            lineNumber: 153,
+                            lineNumber: 355,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/404found/page.tsx",
-                    lineNumber: 82,
+                    lineNumber: 255,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/404found/page.tsx",
-                lineNumber: 81,
+                lineNumber: 254,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true);
 }
-_s(AdminLogin, "myhY7GaLCOpHe3/Kv2D84ALQyvE=", false, function() {
+_s(AdminLogin, "XkB8/8te8DtCqkCSH67NN1zvwQ0=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
     ];
